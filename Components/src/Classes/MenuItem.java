@@ -1,6 +1,6 @@
 package Classes;
 
-
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 /*
@@ -15,4 +15,12 @@ import javax.swing.JLayeredPane;
  */
 public class MenuItem extends JLayeredPane {
     
+    private final JLabel label;
+    private final MenuShape item;
+    
+    
+    public MenuItem(String text,int rayon, int alpha, int theta){
+        label = new JLabel(text);
+        item = new MenuShape(rayon,alpha,theta);
+    }
 }
