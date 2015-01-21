@@ -6,6 +6,8 @@ package Classes;
  * and open the template in the editor.
  */
 import fr.lri.swingstates.canvas.CStateMachine;
+import fr.lri.swingstates.canvas.transitions.DragOnShape;
+import fr.lri.swingstates.canvas.transitions.ReleaseOnShape;
 import fr.lri.swingstates.sm.State;
 import fr.lri.swingstates.sm.Transition;
 import fr.lri.swingstates.sm.jtransitions.DragOnComponent;
@@ -82,7 +84,7 @@ public class MarkingMenuSM extends CStateMachine {
      */
     public State Dragging = new State() {
         // Press of the pen on the left part of the strip
-        Transition move = new DragOnComponent(BUTTON1) {
+        Transition move = new DragOnShape(BUTTON1) {
             @Override
             public boolean guard() {
                 return false; //true tant qu'on est en mode press
@@ -90,13 +92,13 @@ public class MarkingMenuSM extends CStateMachine {
 
             @Override
             public void action() {
-                selectedComponent = (MenuItem) getComponent();
+                selectedComponent = (MenuItem) getShape();
                 //on highlight les menuItems survolés du marking menu
                 menu.highlightItem(selectedComponent);
 
             }
         };
-        Transition mouseMrelease = new ReleaseOnComponent(BUTTON1, ">> Init") {
+        Transition mouserelease = new ReleaseOnShape(BUTTON1, ">> Init") {
             @Override
             public boolean guard() {
                 return true; // true quand on release sur un menuItem
@@ -105,7 +107,7 @@ public class MarkingMenuSM extends CStateMachine {
             @Override
             public void action() {
                 //disparition de marking menu et actionne le bouton sur lequel il release
-                selectedComponent = (MenuItem) getComponent();
+                selectedComponent = (MenuItem) getSHape();
                 menu.selectItem(selectedComponent);
                 menu.hide();
             }
