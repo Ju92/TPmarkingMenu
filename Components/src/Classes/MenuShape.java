@@ -52,6 +52,7 @@ public class MenuShape extends JComponent {
         x = (int) ((double) (rayon) * Math.cos(degToRad(theta+alpha)));
         y = -(int) ((double) rayon * Math.sin(degToRad(theta+alpha)));
         g.drawLine(rayon, rayon, rayon + x, rayon + y);
+        
     }
 
     private double degToRad(int angle) {

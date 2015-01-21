@@ -23,4 +23,11 @@ public class MenuItem extends JLayeredPane {
         label = new JLabel(text);
         item = new MenuShape(rayon,alpha,theta);
     }
+    
+    public MenuItem(){
+        label = new JLabel("");
+        item = new MenuShape();
+    }
+    
+    
 }
