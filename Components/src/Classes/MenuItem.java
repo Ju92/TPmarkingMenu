@@ -19,9 +19,9 @@ public class MenuItem extends JLayeredPane {
     private final MenuShape item;
     
     
-    public MenuItem(String text,int rayon, int alpha, int theta){
+    public MenuItem(String text,int rayon, int alpha, int theta, String name){
         label = new JLabel(text);
-        item = new MenuShape(rayon,alpha,theta);
+        item = new MenuShape(rayon,alpha,theta,name);
     }
     
     public MenuItem(){

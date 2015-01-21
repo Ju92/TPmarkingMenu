@@ -3,6 +3,7 @@ package Classes;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.awt.PopupMenu;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Juliette
  */
-public class Menu {
+public class Menu extends PopupMenu{
 
     private ArrayList<MenuShape> listItems;
 

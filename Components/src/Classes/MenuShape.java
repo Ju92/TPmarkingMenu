@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.geom.Point2D;
 
 public class MenuShape extends CShape {
 
@@ -15,19 +16,24 @@ public class MenuShape extends CShape {
     private int rayon;
     private int alpha;
     private int theta;
+    private String text;
+    private Point2D center;
 
     public MenuShape(int rayon,
             int alpha,
-            int theta) {
+            int theta,
+            String text) {
         super();
         this.rayon = rayon;
         this.theta = theta;
         this.alpha = alpha;
         this.scaleTo(2 * rayon, 2 * rayon);
+        //Place normalement la shape au bon endroit
+        this.translateTo(center.getX()-rayon,center.getY()-rayon);
     }
 
     public MenuShape() {
-        this(DEFAULT_RAYON, DEFAULT_ALPHA, DEFAULT_THETA);
+        this(DEFAULT_RAYON, DEFAULT_ALPHA, DEFAULT_THETA,"");
     }
 
     @Override
@@ -38,7 +44,6 @@ public class MenuShape extends CShape {
         g.setColor(Color.lightGray);
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-
         g.fillArc(0,
                 0,
                 2*rayon, 2*rayon,
@@ -52,7 +57,6 @@ public class MenuShape extends CShape {
         x = (int) ((double) (rayon) * Math.cos(degToRad(theta+alpha)));
         y = -(int) ((double) rayon * Math.sin(degToRad(theta+alpha)));
         g.drawLine(rayon, rayon, rayon + x, rayon + y);
-        
     }
 
     private double degToRad(int angle) {
@@ -107,5 +111,19 @@ public class MenuShape extends CShape {
      */
     public static int getDEFAULT__RAYON() {
         return DEFAULT_RAYON;
+    }
+
+    /**
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * @param text the text to set
+     */
+    public void setText(String text) {
+        this.text = text;
     }
 }
