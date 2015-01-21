@@ -1,116 +1,110 @@
 package Classes;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import javax.swing.JComponent;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Adrien
- */
 public class MenuShape extends JComponent {
 
-    private static final double DEFAULT_RAYON = 100;
-    private static final double DEFAULT_THETA = 0;
-    private static final double DEFAULT_ALPHA = 45;
+    private static final int DEFAULT_RAYON = 100;
+    private static final int DEFAULT_THETA = 0;
+    private static final int DEFAULT_ALPHA = 45;
 
-    private double rayon;
-    private double alpha;
-    private double theta;
-    private Point center;
+    private int rayon;
+    private int alpha;
+    private int theta;
 
-    public MenuShape(double rayon,
-            double alpha,
-            double theta) {
+    public MenuShape(int rayon,
+            int alpha,
+            int theta) {
         super();
         this.rayon = rayon;
         this.theta = theta;
         this.alpha = alpha;
-        center = new Point(0, 0);
+        this.setSize(2 * rayon, 2 * rayon);
     }
 
     public MenuShape() {
         this(DEFAULT_RAYON, DEFAULT_ALPHA, DEFAULT_THETA);
     }
 
-    
     @Override
-    public void paint(Graphics g) {
-        g.setColor(Color.gray);
-        g.fillArc(center.x - (int) rayon / 2,
-                center.y - (int) rayon / 2,
-                (int) rayon, (int) rayon,
-                (int) theta, (int) alpha);
+    public void paint(Graphics _g) {
+        Graphics2D g = (Graphics2D) _g;
+        int x = (int) ((double) (rayon) * Math.cos(degToRad(theta)));
+        int y = -(int) ((double) rayon * Math.sin(degToRad(theta)));
+        g.setColor(Color.lightGray);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g.fillArc(0,
+                0,
+                2*rayon, 2*rayon,
+                theta, alpha);
+        g.setColor(Color.black);
+        g.drawArc(0,
+                0,
+                2*rayon, 2*rayon,
+                theta, alpha);
+        g.drawLine(rayon, rayon, rayon + x, rayon + y);
+        x = (int) ((double) (rayon) * Math.cos(degToRad(theta+alpha)));
+        y = -(int) ((double) rayon * Math.sin(degToRad(theta+alpha)));
+        g.drawLine(rayon, rayon, rayon + x, rayon + y);
     }
 
-    
+    private double degToRad(int angle) {
+        return Math.PI * (double) angle / 180.;
+    }
+
     /**
      * @return the internalRayon
      */
-    public double getRayon() {
+    public int getRayon() {
         return rayon;
     }
 
-    /**
-     * @param internalRayon the internalRayon to set
-     */
-    public void setRayon(double rayon) {
+    public void setRayon(int rayon) {
         this.rayon = rayon;
+        this.setSize(2*rayon,2*rayon);
+        repaint();
     }
 
     /**
      * @return the alpha
      */
-    public double getAlpha() {
+    public int getAlpha() {
         return alpha;
     }
 
     /**
      * @param alpha the alpha to set
      */
-    public void setAlpha(double alpha) {
+    public void setAlpha(int alpha) {
         this.alpha = alpha;
+        repaint();
     }
 
     /**
      * @return the theta
      */
-    public double getTheta() {
+    public int getTheta() {
         return theta;
     }
 
     /**
      * @param theta the theta to set
      */
-    public void setTheta(double theta) {
+    public void setTheta(int theta) {
         this.theta = theta;
-    }
-
-    /**
-     * @return the center
-     */
-    public Point getCenter() {
-        return center;
-    }
-
-    /**
-     * @param center the center to set
-     */
-    public void setCenter(Point center) {
-        this.center = center;
+        repaint();
     }
 
     /**
      * @return the DEFAULT_R1
      */
-    public static double getDEFAULT__RAYON() {
+    public static int getDEFAULT__RAYON() {
         return DEFAULT_RAYON;
     }
 }
