@@ -1,7 +1,7 @@
 package Classes;
 
 
-import Classes.MenuItem;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 /*
@@ -15,36 +15,36 @@ import java.util.ArrayList;
  */
 public class Menu {
 
-    private ArrayList<MenuItem> listItems;
+    private ArrayList<MenuShape> listItems;
 
     public Menu() {
         super();
     }
 
     //apparition du menu
-    public void show() {
-        for(MenuItem item : listItems){
+    public void show(Point2D center) {
+        for(MenuShape item : listItems){
             //affichage de chaque item selon le découpage du camembert
         }
     }
     //disparition du menu
     public void hide(){
-        for(MenuItem item : listItems){
+        for(MenuShape item : listItems){
             //cacher chaque item
         }
     }
 
-    public ArrayList<MenuItem> getListItems() {
+    public ArrayList<MenuShape> getListItems() {
         return listItems;
     }
 
     //selection d'un des items du menu -> application de son effet
-    public void selectItem(MenuItem item) {
+    public void selectItem(MenuShape item) {
         
     }
     
      //highlight d'un des items du menu
-    public void highlightItem(MenuItem item) {
+    public void highlightItem(MenuShape item) {
         
     }
 }

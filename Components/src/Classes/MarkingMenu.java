@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MarkingMenu {
    //tous les champs sont privés et on a un constructeur vide => pour faire un component 
     
-    private ArrayList<MenuItem> listItem;
+    private ArrayList<MenuShape> listItem;
     private MarkingMenuSM sm;
     private Menu menu;
     

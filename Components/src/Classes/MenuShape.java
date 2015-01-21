@@ -1,12 +1,12 @@
 package Classes;
 
+import fr.lri.swingstates.canvas.CShape;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import javax.swing.JComponent;
 
-public class MenuShape extends JComponent {
+public class MenuShape extends CShape {
 
     private static final int DEFAULT_RAYON = 100;
     private static final int DEFAULT_THETA = 0;
@@ -23,7 +23,7 @@ public class MenuShape extends JComponent {
         this.rayon = rayon;
         this.theta = theta;
         this.alpha = alpha;
-        this.setSize(2 * rayon, 2 * rayon);
+        this.scaleTo(2 * rayon, 2 * rayon);
     }
 
     public MenuShape() {
@@ -68,7 +68,7 @@ public class MenuShape extends JComponent {
 
     public void setRayon(int rayon) {
         this.rayon = rayon;
-        this.setSize(2*rayon,2*rayon);
+        this.scaleTo(2*rayon,2*rayon);
         repaint();
     }
 

@@ -28,8 +28,8 @@ import java.util.ArrayList;
 public class MarkingMenuSM extends CStateMachine {
 
     private Menu menu;
-    private ArrayList<MenuItem> listItems;
-    private MenuItem selectedComponent;
+    private ArrayList<MenuShape> listItems;
+    private MenuShape selectedComponent;
     private Point2D markingMenuCenter;
     private Point2D newPoint;
 
@@ -57,7 +57,7 @@ public class MarkingMenuSM extends CStateMachine {
             public void action() {
                 markingMenuCenter = getPoint();
                 // if timer ?
-                menu.show();
+                menu.show(markingMenuCenter);
             }
         };
     };
@@ -92,7 +92,7 @@ public class MarkingMenuSM extends CStateMachine {
 
             @Override
             public void action() {
-                selectedComponent = (MenuItem) getShape();
+                selectedComponent = (MenuShape) getShape();
                 //on highlight les menuItems survolés du marking menu
                 menu.highlightItem(selectedComponent);
 
@@ -107,7 +107,7 @@ public class MarkingMenuSM extends CStateMachine {
             @Override
             public void action() {
                 //disparition de marking menu et actionne le bouton sur lequel il release
-                selectedComponent = (MenuItem) getSHape();
+                selectedComponent = (MenuShape) getShape();
                 menu.selectItem(selectedComponent);
                 menu.hide();
             }
