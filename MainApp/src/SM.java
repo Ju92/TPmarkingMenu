@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mainapp;
+
 
 import fr.lri.swingstates.canvas.CShape;
 import fr.lri.swingstates.canvas.CStateMachine;
-import fr.lri.swingstates.canvas.Canvas;
 import fr.lri.swingstates.canvas.transitions.PressOnShape;
 import fr.lri.swingstates.canvas.transitions.ReleaseOnShape;
-import static fr.lri.swingstates.sm.BasicInputStateMachine.BUTTON1;
 import fr.lri.swingstates.sm.State;
 import fr.lri.swingstates.sm.Transition;
+import fr.lri.swingstates.sm.transitions.Press;
 import java.awt.Color;
 
 /**
@@ -23,7 +22,7 @@ public class SM extends CStateMachine {
 
     private MenuShape shape;
 
-    public SM(CShape shape, Canvas canvas) {
+    public SM(CShape shape) {
         super(Main.getCanvasInstance());
         this.shape = (MenuShape) shape;
 
@@ -33,7 +32,9 @@ public class SM extends CStateMachine {
         Transition mousePress = new PressOnShape(BUTTON1, ">> OnShape") {
             @Override
             public boolean guard() {
-                return getShape() == shape;
+                System.out.println("coucou guard");
+                //return getShape() == shape;
+                return true;
             }
 
             @Override
@@ -42,6 +43,7 @@ public class SM extends CStateMachine {
                 System.out.println("coucou ENTER");
             }
         };
+
     };
 
     public State OnShape = new State() {
